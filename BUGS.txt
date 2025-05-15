@@ -1,0 +1,19 @@
+
+
+
+
+** BUG **
+offsets in output file are off. seems to have to do with adding the loops and place in loop as well as positive or negative side of center.
+
+if (MatchXPoint((uint32_t*)h0)) {
+
+	// this seems to be involved in the bug resulting in wronge offset numbers in results.
+
+	Int k(&key);
+	 k.Add((uint64_t)CPU_GRP_SIZE / 2 + 1); // this was a quick attempt to fix bug. along with trying to subtract if negitive side.
+//		k.Add((uint64_t)CPU_GRP_SIZE / 2+1 + i);  // half
+	k.Add((uint64_t)i);
+
+
+
+
