@@ -1,0 +1,92 @@
+﻿cl : command line  warning D9002: ignoring unknown option '/arch:SSE'
+  CmdParse.cpp
+  GmpUtil.cpp
+C:\Users\Joshua\source\repos\giant\gmp\include\gmp.h(1795,19): warning C4244: 'return': conversion from 'mp_limb_t' to 'unsigned long', possible loss of data
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(101,26): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(155,6): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(206,24): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(278,24): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(322,24): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(330,26): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(372,37): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(407,24): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(414,24): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(442,36): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(525,20): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(570,20): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(599,19): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(667,13): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(720,20): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(764,19): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(774,16): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(1292,10): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(1593,12): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+C:\Users\Joshua\source\repos\giant\gmp\include\gmpxx.h(1617,10): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  (compiling source file 'GmpUtil.cpp')
+  
+  Int.cpp
+  IntGroup.cpp
+  IntMod.cpp
+  Rotor.cpp
+C:\Users\Joshua\source\repos\giant\giant\Rotor.cpp(549,7): warning C4101: 'timeStr': unreferenced local variable
+  Main.cpp
+C:\Users\Joshua\source\repos\giant\giant\Main.cpp(247,23): warning C4244: '=': conversion from 'unsigned __int64' to 'int', possible loss of data
+C:\Users\Joshua\source\repos\giant\giant\Main.cpp(250,22): warning C4244: '=': conversion from 'unsigned __int64' to 'int', possible loss of data
+  Point.cpp
+  SECP256K1.cpp
+  Timer.cpp
+  Generating Code...
+C:\Users\Joshua\source\repos\giant\giant\Rotor.cpp(638): warning C4700: uninitialized local variable 't1' used
+GmpUtil.obj : error LNK2019: unresolved external symbol __gmpz_clear referenced in function "public: __cdecl __gmp_expr<struct __mpz_struct [1],struct __mpz_struct [1]>::__gmp_expr<struct __mpz_struct [1],struct __mpz_struct [1]>(char const *,int)" (??0?$__gmp_expr@$$BY00U__mpz_struct@@$$BY00U1@@@QEAA@PEBDH@Z)
+GmpUtil.obj : error LNK2019: unresolved external symbol __gmpz_init_set_str referenced in function "public: __cdecl __gmp_expr<struct __mpz_struct [1],struct __mpz_struct [1]>::__gmp_expr<struct __mpz_struct [1],struct __mpz_struct [1]>(char const *,int)" (??0?$__gmp_expr@$$BY00U__mpz_struct@@$$BY00U1@@@QEAA@PEBDH@Z)
+GmpUtil.obj : error LNK2019: unresolved external symbol __gmpz_mul_si referenced in function "public: static void __cdecl __gmp_binary_multiplies::eval(struct __mpz_struct *,struct __mpz_struct const *,long)" (?eval@__gmp_binary_multiplies@@SAXPEAU__mpz_struct@@PEBU2@J@Z)
+GmpUtil.obj : error LNK2019: unresolved external symbol __gmpz_mul_ui referenced in function "public: static void __cdecl __gmp_binary_multiplies::eval(struct __mpz_struct *,struct __mpz_struct const *,unsigned long)" (?eval@__gmp_binary_multiplies@@SAXPEAU__mpz_struct@@PEBU2@K@Z)
+GmpUtil.obj : error LNK2019: unresolved external symbol __gmpz_set referenced in function __gmpz_neg
+GmpUtil.obj : error LNK2019: unresolved external symbol __gmpz_sub referenced in function "public: static void __cdecl __gmp_binary_minus::eval(struct __mpz_struct *,struct __mpz_struct const *,struct __mpz_struct const *)" (?eval@__gmp_binary_minus@@SAXPEAU__mpz_struct@@PEBU2@1@Z)
+GmpUtil.obj : error LNK2019: unresolved external symbol __gmpf_clear referenced in function "public: __cdecl __gmp_expr<struct __mpf_struct [1],struct __mpf_struct [1]>::~__gmp_expr<struct __mpf_struct [1],struct __mpf_struct [1]>(void)" (??1?$__gmp_expr@$$BY00U__mpf_struct@@$$BY00U1@@@QEAA@XZ)
+GmpUtil.obj : error LNK2019: unresolved external symbol __gmpf_div referenced in function "public: static void __cdecl __gmp_binary_divides::eval(struct __mpf_struct *,struct __mpf_struct const *,struct __mpf_struct const *)" (?eval@__gmp_binary_divides@@SAXPEAU__mpf_struct@@PEBU2@1@Z)
+GmpUtil.obj : error LNK2019: unresolved external symbol __gmpf_get_d referenced in function "public: double __cdecl __gmp_expr<struct __mpf_struct [1],struct __mpf_struct [1]>::get_d(void)const " (?get_d@?$__gmp_expr@$$BY00U__mpf_struct@@$$BY00U1@@@QEBANXZ)
+GmpUtil.obj : error LNK2019: unresolved external symbol __gmpf_get_default_prec referenced in function "public: unsigned long __cdecl __gmp_expr<struct __mpz_struct [1],struct __mpz_struct [1]>::get_prec(void)const " (?get_prec@?$__gmp_expr@$$BY00U__mpz_struct@@$$BY00U1@@@QEBAKXZ)
+GmpUtil.obj : error LNK2019: unresolved external symbol __gmpf_init2 referenced in function "public: __cdecl __gmp_expr<struct __mpf_struct [1],struct __mpf_struct [1]>::__gmp_expr<struct __mpf_struct [1],struct __mpf_struct [1]><struct __mpz_struct [1],struct __mpz_struct [1]>(class __gmp_expr<struct __mpz_struct [1],struct __mpz_struct [1]> const &)" (??$?0$$BY00U__mpz_struct@@$$BY00U0@@?$__gmp_expr@$$BY00U__mpf_struct@@$$BY00U1@@@QEAA@AEBV?$__gmp_expr@$$BY00U__mpz_struct@@$$BY00U1@@@@Z)
+GmpUtil.obj : error LNK2019: unresolved external symbol __gmpf_set_z referenced in function "void __cdecl __gmp_set_expr<struct __mpz_struct [1]>(struct __mpf_struct *,class __gmp_expr<struct __mpz_struct [1],struct __mpz_struct [1]> const &)" (??$__gmp_set_expr@$$BY00U__mpz_struct@@@@YAXPEAU__mpf_struct@@AEBV?$__gmp_expr@$$BY00U__mpz_struct@@$$BY00U1@@@@Z)
+C:\Users\Joshua\source\repos\giant\x64\Debug\giant.exe : fatal error LNK1120: 12 unresolved externals

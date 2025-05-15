@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SECP256K1.cpp">
+      <Filter>SECP256K1</Filter>
+    </ClCompile>
+    <ClCompile Include="IntMod.cpp">
+      <Filter>SECP256K1</Filter>
+    </ClCompile>
+    <ClCompile Include="IntGroup.cpp">
+      <Filter>SECP256K1</Filter>
+    </ClCompile>
+    <ClCompile Include="Int.cpp">
+      <Filter>SECP256K1</Filter>
+    </ClCompile>
+    <ClCompile Include="CmdParse.cpp">
+      <Filter>CMDPARSE</Filter>
+    </ClCompile>
+    <ClCompile Include="Rotor.cpp">
+      <Filter>ROTOR</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>ROTOR</Filter>
+    </ClCompile>
+    <ClCompile Include="GmpUtil.cpp">
+      <Filter>ROTOR</Filter>
+    </ClCompile>
+    <ClCompile Include="Point.cpp">
+      <Filter>SECP256K1</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SECP256k1.h">
+      <Filter>SECP256K1</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>SECP256K1</Filter>
+    </ClInclude>
+    <ClInclude Include="IntGroup.h">
+      <Filter>SECP256K1</Filter>
+    </ClInclude>
+    <ClInclude Include="Int.h">
+      <Filter>SECP256K1</Filter>
+    </ClInclude>
+    <ClInclude Include="CmdParse.h">
+      <Filter>CMDPARSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Rotor.h">
+      <Filter>ROTOR</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>ROTOR</Filter>
+    </ClInclude>
+    <ClInclude Include="GmpUtil.h">
+      <Filter>ROTOR</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="SECP256K1">
+      <UniqueIdentifier>{04a52845-fc70-4469-b3f7-ef5b1a9179b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CMDPARSE">
+      <UniqueIdentifier>{ea792c39-9990-4c72-802b-aff345dd01c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ROTOR">
+      <UniqueIdentifier>{b83e8804-c7dd-4300-9312-650665f05e16}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
