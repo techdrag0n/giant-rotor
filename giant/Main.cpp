@@ -11,7 +11,7 @@
 #define RELEASE "0.02 (14may25)"
 // #define SEARCH_COMPRESSED 0
 using namespace std;
-int giantup = 0;
+// int giantup = 0;
 // char myx, myy;
 bool should_exit = false;
 // #define COIN_BTC 1
@@ -239,10 +239,7 @@ int main(int argc, char** argv)
 			else if (optArg.equals("-o", "--out")) {
 				outputFile = optArg.arg;
 			}
-			//else if (optArg.equals("-m", "--mode")) {
-			//	searchMode = parseSearchMode(optArg.arg);
-			//}
-	//		else if (optArg.equals("", "--coin")) {				coinType = COIN_BTC;			}
+
 			else if (optArg.equals("", "--range")) {
 				std::string range = optArg.arg;
 				parseRange(range, rangeStart, rangeEnd);
@@ -280,10 +277,6 @@ int main(int argc, char** argv)
 					return -1;
 				}
 			}
-			else if (optArg.equals("-d", "--down")) {
-				giantup = 0;
-			//	display = std::stoull(optArg.arg);
-			}
 			else if (optArg.equals("-v", "--version")) {
 				printf("Josh-giant v" RELEASE "\n");
 				return 0;
@@ -316,46 +309,7 @@ int main(int argc, char** argv)
 			return -1;
 		}
 
-			//unsigned char xpbytes[32];
-			//xpoint = ops[0];
-			//Int* xp = new Int();
-			//xp->SetBase16(xpoint.c_str());
-			//xp->Get32Bytes(xpbytes);
-			//for (int i = 0; i < 32; i++)
-			//	hashORxpoint.push_back(xpbytes[i]);
-			//delete xp;
-			//if (hashORxpoint.size() != 32) {
-			//	printf("  Error: %s\n", "  Invalid xpoint");
-			//	usage();
-			//	return -1;
-			//}
-
 	}
-
-	//if (gridSize.size() == 0) {
-	//	for (int i = 0; i < gpuId.size(); i++) {
-	//		gridSize.push_back(-1);
-	//		gridSize.push_back(128);
-	//	}
-	//}
-	//if (gridSize.size() != gpuId.size() * 2) {
-	//	printf("  Error: %s\n", "  Invalid gridSize or gpuId argument, must have coherent size\n");
-	//	usage();
-	//	return -1;
-	//}
-
-	//if (nbCPUThread > 0 && gpuEnable) {
-	//	printf("  Error: %s\n", "  Invalid arguments, CPU and GPU, both can't be used together right now\n");
-	//	usage();
-	//	return -1;
-	//}
-
-	// Let one CPU core free per gpu is gpu is enabled
-	// It will avoid to hang the system
-	//if (!tSpecified && nbCPUThread > 1 && gpuEnable)
-	//	nbCPUThread -= (int)gpuId.size();
-	//if (nbCPUThread < 0)
-	//	nbCPUThread = 0;
 
 	struct console
 	{
@@ -417,17 +371,15 @@ int main(int argc, char** argv)
 	int maxcount = 10;
 		myblocksize = 0x1000000000000000;
 		printf(" myblocksize %s \n", myblocksize.GetBase16().c_str());
-		v = new Rotor(myx,myy,giantup, compMode, outputFile, maxFound, nbit2, next, zet, rangeStart.GetBase16(), rangeEnd.GetBase16(), should_exit);
+		v = new Rotor(myx,myy, compMode, outputFile, maxFound, nbit2, next, zet, rangeStart.GetBase16(), rangeEnd.GetBase16(), should_exit);
 
 		while (mycount < maxcount)
 		{
-
 		v->Search(1, should_exit);
-
 rangeStart.Add(&myblocksize);
 rangeEnd.Add(&myblocksize);	
 v->rangeStart.SetBase16(rangeStart.GetBase16().c_str());
-v->rhex.SetBase16(rangeStart.GetBase16().c_str());
+v->rhex.SetBase16(rangeStart.GetBase16().c_str()); // remove as we dont need/ want random
 v->rangeEnd.SetBase16(rangeEnd.GetBase16().c_str());
 v->rangeDiff2.Set(&v->rangeEnd);
 v->rangeDiff2.Sub(&v->rangeStart);

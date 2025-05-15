@@ -1,40 +1,40 @@
 ﻿cl : command line  warning D9002: ignoring unknown option '/arch:SSE2'
   CmdParse.cpp
   GmpUtil.cpp
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmp.h(1795,19): warning C4244: 'return': conversion from 'mp_limb_t' to 'unsigned long', possible loss of data
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(101,26): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(155,6): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(206,24): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(278,24): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(322,24): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(330,26): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(372,37): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(407,24): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(414,24): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(442,36): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(525,20): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(570,20): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(599,19): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(667,13): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(720,20): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(764,19): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(774,16): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(1292,10): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(1593,12): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\gmp\include\gmpxx.h(1617,10): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmp.h(1795,19): warning C4244: 'return': conversion from 'mp_limb_t' to 'unsigned long', possible loss of data
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(101,26): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(155,6): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(206,24): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(278,24): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(322,24): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(330,26): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(372,37): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(407,24): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(414,24): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(442,36): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(525,20): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(570,20): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(599,19): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(667,13): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(720,20): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(764,19): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(774,16): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(1292,10): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(1593,12): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\Josh\source\repos\cpugiantrotor\gmp\include\gmpxx.h(1617,10): warning C4146: unary minus operator applied to unsigned type, result still unsigned
   Int.cpp
   IntGroup.cpp
   IntMod.cpp
   Point.cpp
   Rotor.cpp
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\giant\Rotor.cpp(585,7): warning C4101: 'timeStr': unreferenced local variable
+C:\Users\Josh\source\repos\cpugiantrotor\giant\Rotor.cpp(585,7): warning C4101: 'timeStr': unreferenced local variable
   Main.cpp
   SECP256K1.cpp
   Timer.cpp
+  Previous IPDB not found, fall back to full compilation.
 gmp.lib(invert_limb_table.obj) : warning LNK4078: multiple '.rdata' sections found with different attributes (C0400040)
   Generating code
-  Previous IPDB not found, fall back to full compilation.
-C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\giant\Rotor.cpp(674): warning C4700: uninitialized local variable 't1' used
+C:\Users\Josh\source\repos\cpugiantrotor\giant\Rotor.cpp(674): warning C4700: uninitialized local variable 't1' used
   All 584 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
-  giant.vcxproj -> C:\Users\Josh\source\repos\cpugiantrotorcpu wrong\x64\Release\giant.exe
+  giant.vcxproj -> C:\Users\Josh\source\repos\cpugiantrotor\x64\Release\giant.exe

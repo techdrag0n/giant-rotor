@@ -4,20 +4,12 @@
 #include <string>
 #include <vector>
 #include "SECP256k1.h"
-// #include "Bloom.h"
-// #include "GPU/GPUEngine.h"
 #ifdef WIN64
-#include <Windows.h>
+#include <Windows.h> // nedded???
 #endif
-//#define CHECK_POINT_SEARCH_MODE_SX(_h,incr,mode)  CheckPointSEARCH_MODE_SX(_h,incr,mode,xpoint,maxFound,out)
-// #define SEARCH_MODE_SX 4	
-//#define CPU_GRP_SIZE (1024)
-//#define CPU_GRP_SIZE (2048)
+
 #define CPU_GRP_SIZE (4096)
-//#define CPU_GRP_SIZE (8192)
 
-
-// else office
 class Rotor;
 
 typedef struct {
@@ -25,31 +17,24 @@ typedef struct {
 	int  threadId;
 	bool isRunning;
 	bool hasStarted;
-//	int  gridSizeX;
-// 	int  gridSizeY;
-//	int  gpuId;
 	Int rangeStart;
 	Int rangeEnd;
 
-//	Int giantup = 1;
-//	bool rKeyRequest;
 } TH_PARAM;
 
 class Rotor
 {
 
 public:
-	Rotor(const std::vector<unsigned char>& myx1, const std::vector<unsigned char>& myy,int giantup, int compMode, const std::string& outputFile, uint32_t maxFound, int nbit2, int next, int zet,
+	Rotor(const std::vector<unsigned char>& myx1, const std::vector<unsigned char>& myy, int compMode, const std::string& outputFile, uint32_t maxFound, int nbit2, int next, int zet,
 		const std::string& rangeStart, const std::string& rangeEnd, bool& should_exit);
 
 	~Rotor();
 
 	void Search(int nbThread, bool& should_exit);
 	void FindKeyCPU(TH_PARAM* p);
-//	void FindKeyGPU(TH_PARAM* p);
 //	const std::vector<unsigned char>& myx1;
 //	const std::vector<unsigned char>& myy1;
-	//
 	Int rangeStart8;
 	Int rangeStart;
 	Int rangeEnd;

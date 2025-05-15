@@ -23,7 +23,7 @@ Point _2Gn;
 
 // ----------------------------------------------------------------------------
 
-Rotor::Rotor(const std::vector<unsigned char>& myx1, const std::vector<unsigned char>& myy1,int giantup, int compMode, const std::string& outputFile,  uint32_t maxFound, int nbit2, int next, int zet,
+Rotor::Rotor(const std::vector<unsigned char>& myx1, const std::vector<unsigned char>& myy1, int compMode, const std::string& outputFile,  uint32_t maxFound, int nbit2, int next, int zet,
 	const std::string& rangeStart, const std::string& rangeEnd, bool& should_exit)
 {
 	this->outputFile = outputFile;
@@ -215,12 +215,12 @@ DWORD WINAPI _FindKeyCPU(LPVOID lpParam)
 }
 
 
-// ***   will need to change to comparing y point
+// ***   get rid of compressed ???
 void Rotor::checkSingleXPoint(bool compressed, Int key, int i, Point p1)
 {
 	unsigned char h0[32];
 
-	// Point
+	// getting y point data might be able to unroll/ inline this 
 	secp->GetXBytes(compressed, p1, h0);
 
 	if (MatchXPoint((uint32_t*)h0)) {

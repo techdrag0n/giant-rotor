@@ -106,7 +106,7 @@ uint8_t Secp256K1::GetByte(std::string& str, int idx)
 	return (uint8_t)val;
 
 }
-
+/*
 std::string Secp256K1::GetPublicKeyHex(bool compressed, Point& pubKey)
 {
 
@@ -126,7 +126,7 @@ std::string Secp256K1::GetPublicKeyHex(bool compressed, Point& pubKey)
 	return ret;
 
 }
-
+*/
 void Secp256K1::GetXBytes(bool compressed, Point& pubKey, unsigned char* publicKeyBytes)
 {
 		pubKey.y.Get32Bytes(publicKeyBytes);

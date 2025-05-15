@@ -19,7 +19,7 @@ public:
 //	bool  EC(Point& p);
 	void GetXBytes(bool compressed, Point& pubKey, unsigned char* publicKeyBytes);
 
-	std::string GetPublicKeyHex(bool compressed, Point& pubKey);
+//	std::string GetPublicKeyHex(bool compressed, Point& pubKey);
 
 //	Point Add(Point& p1, Point& p2);
 	Point Add2(Point& p1, Point& p2);
