@@ -8,7 +8,7 @@
 #include <cassert>
 #include <algorithm>
 
-#define RELEASE "0.02 (13nov2023)"
+#define RELEASE "0.02 (14may25)"
 // #define SEARCH_COMPRESSED 0
 using namespace std;
 int giantup = 0;
