@@ -3,7 +3,7 @@
 #include "CmdParse.h"
 #include <fstream>
 #include <string>
-#include <string.h>
+// #include <string.h>
 #include <stdexcept>
 #include <cassert>
 #include <algorithm>
@@ -15,7 +15,7 @@ using namespace std;
 // char myx, myy;
 bool should_exit = false;
 // #define COIN_BTC 1
-// ----------------------------------------------------------------------------
+// --------------------------------------------------------------------
 void usage()
 {
 	printf("CPU-Roter [OPTIONS...] [TARGETS]\n");
@@ -27,7 +27,7 @@ void usage()
 
 }
 
-// ----------------------------------------------------------------------------
+// --------------------------------------------------------------------
 
 void getInts(string name, vector<int>& tokens, const string& text, char sep)
 {
@@ -58,7 +58,7 @@ void getInts(string name, vector<int>& tokens, const string& text, char sep)
 
 }
 
-// ----------------------------------------------------------------------------
+// --------------------------------------------------------------------
 
 //int parseSearchMode(const std::string& s)
 //{
@@ -73,7 +73,7 @@ void getInts(string name, vector<int>& tokens, const string& text, char sep)
 //	exit(-1);
 //}
 
-// ----------------------------------------------------------------------------
+// --------------------------------------------------------------------
 
 //int parseCoinType(const std::string& s)
 //{
@@ -89,7 +89,7 @@ void getInts(string name, vector<int>& tokens, const string& text, char sep)
 //	exit(-1);
 //}
 
-// ----------------------------------------------------------------------------
+// --------------------------------------------------------------------
 
 bool parseRange(const std::string& s, Int& start, Int& end)
 {
@@ -367,8 +367,11 @@ int main(int argc, char** argv)
 		Rotor* v;
 
 		int mycount = 0;
-//			int maxcount = 1024;
-	int maxcount = 10;
+#if DEBUG 1
+	int maxcount = 5;
+#else
+		int maxcount = 1024;
+#endif
 		myblocksize = 0x1000000000000000;
 		printf(" myblocksize %s \n", myblocksize.GetBase16().c_str());
 		v = new Rotor(myx,myy, compMode, outputFile, maxFound, nbit2, next, zet, rangeStart.GetBase16(), rangeEnd.GetBase16(), should_exit);

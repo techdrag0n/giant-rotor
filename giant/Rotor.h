@@ -7,6 +7,7 @@
 #ifdef WIN64
 #include <Windows.h> // nedded???
 #endif
+#define DEBUG 0
 
 #define CPU_GRP_SIZE (4096)
 
@@ -51,7 +52,7 @@ private:
 	void InitGenratorTable();
 
 //	std::string GetHex(std::vector<unsigned char>& buffer);
-	void checkSingleXPoint(bool compressed, Int key, int i, Point p1);
+	void checkSingleXPoint(bool compressed, Int key, int i, Point p1,int callnum);
 //	void output(std::string pAddrHex, std::string pubKey);
 std::string myx1;
 std::string myy1;

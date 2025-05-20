@@ -21,7 +21,7 @@ using namespace std;
 Point Gn[CPU_GRP_SIZE / 2];
 Point _2Gn;
 
-// ----------------------------------------------------------------------------
+// --------------------------------------------------------------------
 
 Rotor::Rotor(const std::vector<unsigned char>& myx1, const std::vector<unsigned char>& myy1, int compMode, const std::string& outputFile,  uint32_t maxFound, int nbit2, int next, int zet,
 	const std::string& rangeStart, const std::string& rangeEnd, bool& should_exit)
@@ -45,7 +45,7 @@ Rotor::Rotor(const std::vector<unsigned char>& myx1, const std::vector<unsigned 
 	InitGenratorTable();
 }
 
-// ----------------------------------------------------------------------------
+// --------------------------------------------------------------------
 
 void Rotor::InitGenratorTable()
 {
@@ -119,31 +119,21 @@ void Rotor::InitGenratorTable()
 	nextt99 = value777 * 1;
 	reh.Add(nextt99);
 	gir.Sub(&reh);
-
 }
 
-// ----------------------------------------------------------------------------
+// --------------------------------------------------------------------
 
 Rotor::~Rotor()
 {
 	delete secp;
 	if (DATA)
 	delete DATA;	//	free(DATA);
-
 }
 
-// ----------------------------------------------------------------------------
-/*
-void Rotor::output(std::string pAddrHex, std::string pubKey)
-{
- myoutputstr = myoutputstr + pubKey.c_str() + " " + pAddrHex.c_str() + "\n";
+// --------------------------------------------------------------------
 
-}
-*/
 void Rotor::output2(std::string myoutputstr)
 {
-
-	//	WaitForSingleObject(ghMutex, INFINITE);
 
 	FILE* f = stdout;
 	bool needToClose = false;
@@ -163,10 +153,8 @@ void Rotor::output2(std::string myoutputstr)
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	fprintf(f, "%s ", myoutputstr.c_str());
-	//fprintf(f, "%s\n", pAddrHex.c_str());
 	if (needToClose)
 		fclose(f);
-	//	ReleaseMutex(ghMutex);
 
 }
 
@@ -200,7 +188,7 @@ void Rotor::output3(std::string myoutputstr)
 
 }
 
-// ----------------------------------------------------------------------------
+// --------------------------------------------------------------------
 
 DWORD WINAPI _FindKeyCPU(LPVOID lpParam)
 {
@@ -214,36 +202,43 @@ DWORD WINAPI _FindKeyCPU(LPVOID lpParam)
 	return 0;
 }
 
-
 // ***   get rid of compressed ???
-void Rotor::checkSingleXPoint(bool compressed, Int key, int i, Point p1)
+void Rotor::checkSingleXPoint(bool compressed, Int key, int i, Point p1,int callnum)
 {
 	unsigned char h0[32];
 
 	// getting y point data might be able to unroll/ inline this 
-	secp->GetXBytes(compressed, p1, h0);
+	secp->GetXBytes(compressed, p1, h0); // does compressed do anything here???
 
 	if (MatchXPoint((uint32_t*)h0)) {
 
 		// this seems to be involved in the bug resulting in wronge offset numbers in results.
-
 		Int k(&key);
-		 k.Add((uint64_t)CPU_GRP_SIZE / 2 + 1); // this was a quick attempt to fix bug.  along with trying to subtract if negitive side.
-	//		k.Add((uint64_t)CPU_GRP_SIZE / 2+1 + i);  // half
-		k.Add((uint64_t)i);
+		 k.Add((uint64_t)CPU_GRP_SIZE / 2); // this was a quick attempt to fix bug.  along with trying to subtract if negitive side.
+		 if (callnum == 1)
+		 {
+			 k.Add((uint64_t)i+1);
+		 }
+		 else {
+			 k.Sub((uint64_t)i+1);
+		 }
 
-		string s = p1.x.GetBase16().c_str();
-	//	std::ostringstream oss;
-	//	oss << std::right << std::setfill('0') << std::setw(64) << s;
-		myoutputstr = myoutputstr + s + " ";
 
-		s = p1.y.GetBase16().c_str();
-	//	std::ostringstream oss2;
-	//	oss2 << std::right << std::setfill('0') << std::setw(64) << s;
 
+#if DEBUG 1
+
+		string s1 = p1.x.GetBase16().c_str(); // wont need after debugging done
+		myoutputstr = myoutputstr + to_string(callnum) + " " + s1 + " ";
+
+
+
+#endif // DEBUG = 1
+		string s = p1.y.GetBase16().c_str();
 		myoutputstr = myoutputstr + s + " " + k.GetBase16().c_str() + "\n";
-
+#if DEBUG
+#else
 		endOfSearch = true;
+#endif
 	}
 }
 
@@ -259,10 +254,7 @@ void Rotor::getCPUStartingKey(Int& tRangeStart, Int& tRangeEnd, Int& key, Point&
 	kon.Set(&tRangeStart);
 	kon.Add(&rangeDiffcp);
 
-
 	trk = trk + 1;
-
-
 		printf("  loop (%d) : %s -> %s \n\n", trk, key.GetBase16().c_str(), rangeEnd.GetBase16().c_str());
 
 	Int km(&key);
@@ -270,8 +262,6 @@ string mykm =	km.GetBase16().c_str();
 	km.Add((uint64_t)CPU_GRP_SIZE / 2);
 
 	startP = secp->ComputePublicKey(&km);
-
-
 	string mytesty = startP.y.GetBase16().c_str();
 string mytestx =	startP.x.GetBase16().c_str();
 	printf("  loop (%d) : %s -> %s \n\n", trk, startP.x.GetBase16().c_str(), rangeEnd.GetBase16().c_str());
@@ -280,30 +270,23 @@ string mytestx =	startP.x.GetBase16().c_str();
 
 Point AddDirect1(Point& p1, Point& p2)
 {
-
 	Int _s;
 	Int _p;
 	Int dy;
 	Int dx;
 	Point r;
 	r.z.SetInt32(1);
-
 	dy.ModSub(&p2.y, &p1.y);
 	dx.ModSub(&p2.x, &p1.x);
 	dx.ModInv();
 	_s.ModMulK1(&dy, &dx);    // s = (p2.y-p1.y)*inverse(p2.x-p1.x);
-
 	_p.ModSquareK1(&_s);       // _p = pow2(s)
-
 	r.x.ModSub(&_p, &p1.x);
 	r.x.ModSub(&p2.x);       // rx = pow2(s) - p1.x - p2.x;
-
 	r.y.ModSub(&p2.x, &r.x);
 	r.y.ModMulK1(&_s);
 	r.y.ModSub(&p2.y);       // ry = - p2.y - s*(ret.x-p2.x);
-
 	return r;
-
 }
 
 void Rotor::FindKeyCPU(TH_PARAM* ph)
@@ -320,31 +303,22 @@ void Rotor::FindKeyCPU(TH_PARAM* ph)
 	// Group Init
 	Int key;// = new Int();
 	Point startP;// = new Point();
-//	Point startP2;// = new Point();
-	// set startP  to unknown point
-	// 0x1000 = 04       175E159F728B865A72F99CC6C6FC846DE0B93833FD2222ED73FCE5B551E5B739D3506E0D9E3C79EBA4EF97A51FF71F5EACB5955ADD24345C6EFA6FFEE9FED695
-	// 0x0100000000 = 04 100F44DA696E71672791D0A09B7BDE459F1215A29B3C03BFEFD7835B39A48DB0CDD9E13192A00B772EC8F3300C090666B7FF4A18FF5195AC0FBD5CD62BC65A09
-	//fix this change to uknown - 119 -118 done
 
-//	startP2.x.SetBase16("ed01ff219ed5c1afc12d991a82e3063ddcee1fd53b46f7cad52a0d87a7112aed");
+		Point startP2;// = new Point();
+		//fix this change to uknown - 139 -138 done
 
-//	startP2.x.SetBase16(myx1.c_str());
+		//	startP2.x.SetBase16("ed01ff219ed5c1afc12d991a82e3063ddcee1fd53b46f7cad52a0d87a7112aed");
+	startP2.x.SetBase16(myx1.c_str());
+		//	startP2.y.SetBase16("73576e8a0991cdd5210a7a487e9bd4062cf52db06f3ad7b510f8b4656b93bacf"); //odd
+ startP2.y.SetBase16(myy1.c_str()); //office
 
-//	startP2.y.SetBase16("73576e8a0991cdd5210a7a487e9bd4062cf52db06f3ad7b510f8b4656b93bacf"); //odd
-
-	// 73576e8a0991cdd5210a7a487e9bd4062cf52db06f3ad7b510f8b4656b93bacf
-	// 8ca89175f66e322adef585b781642bf9d30ad24f90c5284aef074b99946c4160
-	//	startP2.y.SetBase16("6f430175e964aa005535f9c98d7141c1f4304d0e353b8439f242ec096b8d3522"); //office
-// startP2.y.SetBase16(myy1.c_str()); //office
-
-//	startP2.z.SetInt32(1);
+		startP2.z.SetInt32(1); // needed???
 	getCPUStartingKey(tRangeStart, tRangeEnd, key, startP); // 
-//	string myx2 = startP.x.GetBase16().c_str();
+	//	string myx2 = startP.x.GetBase16().c_str();
 
-//	string myy2 = startP.y.GetBase16().c_str() ;
-
-//	Point startP3 = AddDirect1(startP, startP2);
-//	startP = startP3; // is this the problem????
+	//	string myy2 = startP.y.GetBase16().c_str() ;
+		Point startP3 = AddDirect1(startP, startP2);
+		startP = startP3; // 
 
 	Int* dx = new Int[CPU_GRP_SIZE / 2 + 1];
 	Point* pts = new Point[CPU_GRP_SIZE];
@@ -360,12 +334,13 @@ void Rotor::FindKeyCPU(TH_PARAM* ph)
 	ph->hasStarted = true;
 	//	ph->rKeyRequest = false;
 	std::string myoutputstr2 = "";
+	int mycounter = 1;
 	while (!endOfSearch) {
 
 		// Fill group
 		int i;
-		int hLength = (CPU_GRP_SIZE / 2 - 1);
-		//	int hLength = (CPU_GRP_SIZE / 2);
+		//	int hLength = (CPU_GRP_SIZE / 2 - 1);
+		int hLength = (CPU_GRP_SIZE / 2)-1;
 
 		for (i = 0; i < hLength; i++) 
 		{	dx[i].ModSub(&Gn[i].x, &startP.x); }
@@ -380,10 +355,6 @@ void Rotor::FindKeyCPU(TH_PARAM* ph)
 
 		// center point
 		pts[CPU_GRP_SIZE / 2] = startP;
-		//printf("h= %i \n", hLength);
-
-
-
 
 		for (i = 0; i < hLength && !endOfSearch; i++) {
 
@@ -404,7 +375,7 @@ void Rotor::FindKeyCPU(TH_PARAM* ph)
 			pp->y.ModMulK1(_s);
 			pp->y.ModSub(&Gn[i].y);           // ry = - p2.y - s*(ret.x-p2.x);
 
-			checkSingleXPoint(true, key, 0-i, *pp);
+			checkSingleXPoint(true, key, i, *pp,1);
 			dyn->Set(&Gn[i].y);
 			dyn->ModNeg();
 			dyn->ModSub(&pn->y);
@@ -415,14 +386,7 @@ void Rotor::FindKeyCPU(TH_PARAM* ph)
 			pn->x.ModNeg();
 			pn->x.ModAdd(_p);
 
-			// output pn->x
-
-//			printf("  p.x1 : %s\n", pn->x.GetBase16().c_str());
-
-
 			pn->x.ModSub(&Gn[i].x);          // rx = pow2(s) - p1.x - p2.x;
-
-// ewq	
 			pn->y.ModSub(&Gn[i].x, &pn->x);
 			pn->y.ModMulK1(_s);
 			pn->y.ModAdd(&Gn[i].y);          // ry = - p2.y - s*(ret.x-p2.x);
@@ -430,8 +394,7 @@ void Rotor::FindKeyCPU(TH_PARAM* ph)
 			pts[CPU_GRP_SIZE / 2 + (i + 1)] = *pp;
 			pts[CPU_GRP_SIZE / 2 - (i + 1)] = *pn;
 
-			checkSingleXPoint(true, key, 0-i, *pn);
-
+			checkSingleXPoint(true, key, i, * pn, 2);
 		}
 
 		// First point (startP - (GRP_SZIE/2)*G)
@@ -469,22 +432,28 @@ void Rotor::FindKeyCPU(TH_PARAM* ph)
 		pp->y.ModSub(&_2Gn.y);
 		startP = *pp;
 
-		 // ....
-				for (int i = 0; i < CPU_GRP_SIZE && !endOfSearch; i++) {
-					int myi = 0 - i;
-					checkSingleXPoint(true, key, myi, pts[i]);
-				//			checkSingleXPoint(true, key, i, pts[i]);
+	/*  not needed??? might not need some of above too
+		for (int i = 0; i < CPU_GRP_SIZE && !endOfSearch; i++) {
+		checkSingleXPoint(true, key, i, pts[i],3);
 				}
 
+*/
+
 		key.Add((uint64_t)CPU_GRP_SIZE);
-		counters[thId] += CPU_GRP_SIZE; // Point
-	}
+		counters[thId] += CPU_GRP_SIZE;
+#if DEBUG 1
+		mycounter++;
+		if (mycounter > 4)
+		{
+			endOfSearch = true;
+		}
+#endif
+		}
 	ph->isRunning = false;
 
 	delete grp;
 	delete[] dx;
 	delete[] pts;
-
 	delete dy;
 	delete dyn;
 	delete _s;
@@ -493,7 +462,7 @@ void Rotor::FindKeyCPU(TH_PARAM* ph)
 	delete pn;
 }
 
-// ----------------------------------------------------------------------------
+// --------------------------------------------------------------------
 
 bool Rotor::isAlive(TH_PARAM* p)
 {
@@ -504,11 +473,10 @@ bool Rotor::isAlive(TH_PARAM* p)
 	return isAlive;
 }
 
-// ----------------------------------------------------------------------------
+// --------------------------------------------------------------------
 
 bool Rotor::hasStarted(TH_PARAM* p)
 {
-
 	bool hasStarted = true;
 	int total = nbCPUThread;
 	for (int i = 0; i < total; i++)
@@ -516,19 +484,17 @@ bool Rotor::hasStarted(TH_PARAM* p)
 	return hasStarted;
 }
 
-// ----------------------------------------------------------------------------
+// --------------------------------------------------------------------
 
 uint64_t Rotor::getCPUCount()
 {
-
 	uint64_t count = 0;
 	for (int i = 0; i < nbCPUThread; i++)
 		count += counters[i];
 	return count;
-
 }
 
-// ----------------------------------------------------------------------------
+// --------------------------------------------------------------------
 
 void Rotor::SetupRanges(uint32_t totalThreads)
 {
@@ -539,7 +505,7 @@ void Rotor::SetupRanges(uint32_t totalThreads)
 	rangeDiff.Div(&threads);
 }
 
-// ----------------------------------------------------------------------------
+// --------------------------------------------------------------------
 
 void Rotor::Search(int nbThread, bool& should_exit)
 {
@@ -552,29 +518,19 @@ void Rotor::Search(int nbThread, bool& should_exit)
 	// setup ranges
 	SetupRanges(1);
 	memset(counters, 0, sizeof(counters));
-//	printf("\n");
 	TH_PARAM* params = (TH_PARAM*)malloc((nbCPUThread) * sizeof(TH_PARAM));
 	memset(params, 0, 0);
 	// Launch CPU threads
-//	for (int i = 0; i < nbCPUThread; i++) {
 		params[0].obj = this;
 		params[0].threadId = 0;
 		params[0].isRunning = true;
 		params[0].rangeStart.Set(&rangeStart);
 		rangeStart.Add(&rangeDiff);
 		params[0].rangeEnd.Set(&rangeStart);
-	//	DWORD thread_id;
-	//	CreateThread(NULL, 0, _FindKeyCPU, (void*)(params + i), 0, &thread_id);
 
 		_FindKeyCPU( (params + 0));
 
-
-	//	ghMutex = CreateMutex(NULL, FALSE, NULL);
-//	}
-
-//	printf("\n");
 	uint64_t lastCount = 0;
-//	uint64_t gpuCount = 0;//remove
 
 	// Key rate smoothing filter
 #define FILTER_SIZE 8
@@ -595,82 +551,6 @@ void Rotor::Search(int nbThread, bool& should_exit)
 	double completedPerc = 0;
 	uint64_t rKeyCount = 0;
 	while (isAlive(params)) {
-
-	//	uint64_t count = getCPUCount();
-		/*	ICount.SetInt64(count);
-		int completedBits = ICount.GetBitLength();
-
-		completedPerc = CalcPercantage(ICount, rangeStart, rangeDiff2);
-
-		minuty++;
-
-		t1 = Timer::get_tick();
-		keyRate = (double)(count - lastCount) / (t1 - t0);
-		lastkeyRate[filterPos % FILTER_SIZE] = keyRate;
-		filterPos++;
-
-		// KeyRate smoothing
-		double avgKeyRate = 0.0;
-		uint32_t nbSample;
-		for (nbSample = 0; (nbSample < FILTER_SIZE) && (nbSample < filterPos); nbSample++) {
-			avgKeyRate += lastkeyRate[nbSample];
-		}
-		avgKeyRate /= (double)(nbSample);
-
-		zhdat++;
-
-		unsigned long long int years88, days88, hours88, minutes88, seconds88;
-		double avgKeyRate2 = avgKeyRate * 1;
-		rhex.Add(avgKeyRate2);
-		double avgKeyRate5 = avgKeyRate * 1;
-		unsigned long long int input88;
-		unsigned long long int input55;
-		unsigned long long int minnn;
-		string streek77 = rangeDiffbar.GetBase10().c_str();
-		std::istringstream iss(streek77);
-		iss >> input55;
-		minnn = input55 - count;
-		input88 = minnn / avgKeyRate5;
-		years88 = input88 / 60 / 60 / 24 / 365;
-		days88 = (input88 / 60 / 60 / 24) % 365;
-		hours88 = (input88 / 60 / 60) % 24;
-		minutes88 = (input88 / 60) % 60;
-		seconds88 = input88 % 60;
-	
-		if (years88 > 0) {
-			if (isAlive(params)) {
-				memset(timeStr, '\0', 256);
-				printf("\r  [%s] [F: %d] [Y:%03llu D:%03llu] [C: %lf %%] [CPU %d: %.2f Mk/s] [T: %s]  ",
-					toTimeStr(t1, timeStr),
-					nbFoundKey,
-					years88,
-					days88,
-					completedPerc,
-					nbit2,
-					avgKeyRate / 1000000.0,
-					formatThousands(count).c_str());
-			}
-		}
-		else {
-
-			if (isAlive(params)) {
-				memset(timeStr, '\0', 256);
-				printf("\r  [%s] [F: %d] [D:%03llu %02llu:%02llu:%02llu] [C: %lf %%] [CPU %d: %.2f Mk/s] [T: %s]   ",
-					toTimeStr(t1, timeStr),
-					nbFoundKey,
-					days88,
-					hours88,
-					minutes88,
-					seconds88,
-					completedPerc,
-					nbit2,
-					avgKeyRate / 1000000.0,
-					formatThousands(count).c_str());
-			}
-
-		}
-*/
-//		lastCount = count;
 		t0 = t1;
 		if (should_exit || completedPerc > 100.5)
 		{
@@ -678,8 +558,6 @@ void Rotor::Search(int nbThread, bool& should_exit)
 		}
 	}
 }
-
-
 
 int32_t changeEndianness32(int32_t val)
 {
@@ -691,54 +569,22 @@ int32_t changeEndianness32(int32_t val)
 //------------------------------------------------------------------
 bool Rotor::MatchXPoint(uint32_t* _h)
 {
-	
-	uint32_t _mybyte = changeEndianness32(_h[7]);
 
-	if (_mybyte % 0x10 == 0) { // will be replacing with filter & filter2
-	
-//	if (_h[7] < 0x1000000) {
+	uint32_t _mybyte = changeEndianness32(_h[7]);
+#if DEBUG 1
+	return true;
+	int filter = 0x1;
+	if (_mybyte % filter == 0)
+#else
+	int filter = 0x1000000;
+	int filter2 = 0xFFFC2F;
+	if (_mybyte % filter == 0 || _mybyte % filter == filter2)
+#endif
+
+	{ 	
 		return true;
 	}
 	else {
 		return false;
 	}
 }
-// ----------------------------------------------------
-/*
-std::string Rotor::formatThousands(uint64_t x)
-{
-	char buf[32] = "";
-	sprintf(buf, "%llu", x);
-	std::string s(buf);
-	int len = (int)s.length();
-	int numCommas = (len - 1) / 3;
-	if (numCommas == 0) {
-		return s;
-	}
-
-	std::string result = "";
-	int count = ((len % 3) == 0) ? 0 : (3 - (len % 3));
-	for (int i = 0; i < len; i++) {
-		result += s[i];
-
-		if (count++ == 2 && i < len - 1) {
-			result += ",";
-			count = 0;
-		}
-	}
-	return result;
-}
-
-
-// ----------------------------------------------------------------------------
-
-char* Rotor::toTimeStr(int sec, char* timeStr)
-{
-	int h, m, s;
-	h = (sec / 3600);
-	m = (sec - (3600 * h)) / 60;
-	s = (sec - (3600 * h) - (m * 60));
-	sprintf(timeStr, "%0*d:%0*d:%0*d", 2, h, 2, m, 2, s);
-	return (char*)timeStr;
-}
-*/

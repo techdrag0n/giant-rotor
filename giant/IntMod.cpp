@@ -602,7 +602,7 @@ void Int::MontgomeryMult(Int* a, Int* b) {
 }
 
 
-// SecpK1 specific section -----------------------------------------------------------------------------
+// SecpK1 specific section ---------------------------------------------------------------------
 
 void Int::ModMulK1(Int* a, Int* b) {
 
